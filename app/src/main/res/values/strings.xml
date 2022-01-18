@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string-array name="quiz_themes">
+        <item>General Knowledge</item>
+        <item>Science and Computers</item>
+        <item>Animals</item>
+        <item>Geography</item>
+        <item>Art</item>
+    </string-array>
+
+    <string-array name="quiz_difficulty">
+        <item>easy</item>
+        <item>medium</item>
+        <item>hard</item>
+    </string-array>
+</resources>

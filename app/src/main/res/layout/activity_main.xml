@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/AcceptTos"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Accept Terms and Services"
+        android:layout_alignParentBottom="true"/>
+
+    <TextView
+        android:id="@+id/TosTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Terms and Services"/>
+
+    <TextView
+        android:id="@+id/TosText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="The terms and services are"
+        android:layout_below="@id/TosTitle"
+        android:layout_above="@id/AcceptTos"/>
+
+</RelativeLayout>
