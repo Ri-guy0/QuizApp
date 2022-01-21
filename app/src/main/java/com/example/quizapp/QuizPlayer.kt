@@ -116,4 +116,5 @@ class QuizPlayer : AppCompatActivity() {
             Log.e("Score", "$curScore/5")
         }
     }
+
 }
