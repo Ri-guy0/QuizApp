@@ -18,6 +18,7 @@ class QuizModifier : AppCompatActivity() {
         val difficultySpinner = findViewById<Spinner>(R.id.DifficultList)
         val toQuizBtn = findViewById<Button>(R.id.ToQuiz)
 
+        // Array Adapter used to insert data into the dropdown menu for the themes
         ArrayAdapter
             .createFromResource(this, R.array.quiz_themes,android.R.layout.simple_spinner_item)
             .also { adapter ->
@@ -25,6 +26,7 @@ class QuizModifier : AppCompatActivity() {
                 themeSpinner.adapter = adapter
             }
 
+        // Array Adapter used to insert data into the dropdown menu for the difficulties
         ArrayAdapter
             .createFromResource(this, R.array.quiz_difficulty,android.R.layout.simple_spinner_item)
             .also { adapter ->
@@ -32,6 +34,7 @@ class QuizModifier : AppCompatActivity() {
                 difficultySpinner.adapter = adapter
             }
 
+        // Intent to go to the next page with the data from the user
         toQuizBtn.setOnClickListener{
             val toQuizIntent = Intent(this, QuizPlayer::class.java).apply {
                 putExtra("Theme Value", ConvertTheme(themeSpinner.selectedItem.toString()).toString())
@@ -43,6 +46,11 @@ class QuizModifier : AppCompatActivity() {
         }
     }
 
+    /*
+    * converts the name of the theme to the index that the api uses
+    * @param       themeText                the theme as text
+    * @return      Int                      the theme as an index
+    **/
     fun ConvertTheme (themeText: String): Int {
         var themeNum = 0
 
@@ -52,6 +60,12 @@ class QuizModifier : AppCompatActivity() {
             "Animals" -> themeNum=27
             "Geography" -> themeNum=22
             "Art" -> themeNum=25
+            "Mythology" -> themeNum=20
+            "History" -> themeNum=23
+            "Sports" -> themeNum=21
+            "Film" -> themeNum=11
+            "TV" -> themeNum=14
+            "Politics" -> themeNum=24
         }
 
         Log.e("num", themeNum.toString())

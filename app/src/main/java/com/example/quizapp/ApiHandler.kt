@@ -19,6 +19,11 @@ class ApiHandler(addition: String,
     var difficultyValue:String = diffculty
     var quiz = FullQuiz()
 
+    /*
+    * Fetches the data from the api using retrofit
+    * @param       curData            return for the stored data
+    * @return      StoredData
+    **/
     fun runAPI(curData: StoreData) {
 
         Log.e("running", "running")
@@ -58,6 +63,10 @@ class ApiHandler(addition: String,
     data class QuestionResponse(val results: List<TempQuestion>)
     data class TempQuestion(val question: String, var category: String, var correct_answer: String, var incorrect_answers: List<String>)
 
+    /*
+    * Interface to control the extenstion of the API call
+    * @param       url       String of the entire url
+    **/
     interface UserService {
         //@GET("/api.php?amount=2&type=multiple")
         //fun getUsers(): Call<UserResponse>

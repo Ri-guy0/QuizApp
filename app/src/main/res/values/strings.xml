@@ -6,6 +6,12 @@
         <item>Animals</item>
         <item>Geography</item>
         <item>Art</item>
+        <item>Mythology</item>
+        <item>History</item>
+        <item>Sports</item>
+        <item>Film</item>
+        <item>TV</item>
+        <item>Politics</item>
     </string-array>
 
     <string-array name="quiz_difficulty">

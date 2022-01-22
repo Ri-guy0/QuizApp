@@ -25,6 +25,7 @@ class QuizPlayer : AppCompatActivity() {
 
         isApi = intent.getStringExtra("GetAPI").toString()
 
+        // changes how to obtain the data (API or list) depending on where the user came from
         if (isApi.equals("true")) {
             Log.e("getapi?","true")
             themeValue = intent.getStringExtra("Theme Value").toString()
@@ -34,12 +35,17 @@ class QuizPlayer : AppCompatActivity() {
             val apiHandler = ApiHandler(addition, baseUrl, themeName, difficultyValue)
             gameAPI(apiHandler)
         } else {
-            Log.e("getapi?","false")
-            // gets from listview
+            val loadedQuiz = intent.getSerializableExtra("Quiz") as FullQuiz
+            playGame(loadedQuiz)
         }
 
     }
 
+    /*
+    * Medium to play the game with the async function for the API call
+    * @param       apiHandle                the handler to obtain the quiz from the api
+    * @calls       playGame
+    **/
     fun gameAPI(apiHandler: ApiHandler) {
         apiHandler.runAPI(object: StoreData {
             override fun storedData(curQuiz: FullQuiz) {
@@ -49,15 +55,28 @@ class QuizPlayer : AppCompatActivity() {
         })
     }
 
+    /*
+    * Starts the game
+    * @param       quiz                   the quiz used in the current game
+    * @call        nextQuestion           calls the first question
+    **/
     fun playGame(quiz: FullQuiz) {
-        nextQuestion(quiz.getQuestions(), 0, 0)
+        nextQuestion(quiz, 0, 0)
     }
 
-    fun nextQuestion(questions: List<QuizQuestion>, counter:Int, score:Int) {
+    /*
+    * Recursive functionality to display the questions for the quiz
+    * @param       quiz                   the quiz used in the current game
+    * @param       counter                the question number
+    * @param       score                  the current score
+    * @call        checkAnswer
+    **/
+    fun nextQuestion(quiz: FullQuiz, counter:Int, score:Int) {
+        val questions = quiz.getQuestions()
         val correctAnswer = questions[counter].getCorrect()
         val incorrectAnswer = questions[counter].getIncorrect()
         var answerList = listOf<String>(correctAnswer, incorrectAnswer[0], incorrectAnswer[1], incorrectAnswer[2])
-        answerList = answerList.shuffled()
+        answerList = answerList.shuffled() //randomizes order of the buttons
 
         val titleText = findViewById<TextView>(R.id.QuizTitle)
         val firstBtn = findViewById<Button>(R.id.AnswerOne)
@@ -74,36 +93,50 @@ class QuizPlayer : AppCompatActivity() {
         questions[counter].printQuestion()
 
         firstBtn.setOnClickListener{
-            checkAnswer(questions, firstBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, firstBtn.text as String,correctAnswer, score, counter)
         }
 
         secondBtn.setOnClickListener{
-            checkAnswer(questions, secondBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, secondBtn.text as String,correctAnswer, score, counter)
         }
 
         thirdBtn.setOnClickListener{
-            checkAnswer(questions, thirdBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, thirdBtn.text as String,correctAnswer, score, counter)
         }
 
         fourthBtn.setOnClickListener{
-            checkAnswer(questions, fourthBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, fourthBtn.text as String,correctAnswer, score, counter)
         }
     }
 
-    fun checkAnswer(questions: List<QuizQuestion>, curAnswer: String, correctAnswer: String, score: Int, counter: Int) {
+    /*
+    * Checks the current question for correctness and if quiz is complete
+    * @param       quiz                   the quiz used in the current game
+    * @param       curAnswer              the user chosen answer
+    * @param       correctAnswer          the correct answer
+    * @param       counter                the question number
+    * @param       score                  the current score
+    * @call        nextQuestion
+    * @view        AlertDialog            gives user choice to save or not when done quiz
+    **/
+    fun checkAnswer(quiz: FullQuiz, curAnswer: String, correctAnswer: String, score: Int, counter: Int) {
+        val questions = quiz.getQuestions()
         var curScore = score
         var curCounter = counter
         Log.e("Answer", "$curAnswer $correctAnswer")
         if (curAnswer==correctAnswer) curScore += 1
         if (counter!=4) {
             curCounter+=1
-            nextQuestion(questions, curCounter, curScore)
+            nextQuestion(quiz, curCounter, curScore)
         }
         else {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Quiz complete!")
                 .setMessage("$curScore/5")
                 .setPositiveButton("Save"){ dialogInterface: DialogInterface, i: Int ->
+                    val curOpener = QuizOpener(applicationContext)
+                    curOpener.addData(quiz, applicationContext)
+
                     Toast.makeText(applicationContext,"Saved",Toast.LENGTH_LONG).show()
                     val toSavedIntent = Intent(this, SavedQuiz::class.java)
                     startActivity(toSavedIntent)
@@ -116,4 +149,5 @@ class QuizPlayer : AppCompatActivity() {
             Log.e("Score", "$curScore/5")
         }
     }
+
 }

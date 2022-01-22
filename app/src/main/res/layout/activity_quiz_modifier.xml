@@ -11,14 +11,27 @@
         android:id="@+id/QuizModTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
         android:text="Make your quiz!"/>
 
+    <TextView
+        android:id="@+id/ThemeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose your theme!"/>
 
     <Spinner
         android:id="@+id/ThemeList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:id="@+id/DiificultyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose your difficulty!"/>
 
     <Spinner
         android:id="@+id/DifficultList"
@@ -31,5 +44,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start Quiz!"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50sp"/>
+
+    <TextView
+        android:id="@+id/ApiCredit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:text="Thank you to open trivia database! Find them at https://opentdb.com/"/>
 
 </LinearLayout>
