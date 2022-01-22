@@ -34,8 +34,8 @@ class QuizPlayer : AppCompatActivity() {
             val apiHandler = ApiHandler(addition, baseUrl, themeName, difficultyValue)
             gameAPI(apiHandler)
         } else {
-            Log.e("getapi?","false")
-            // gets from listview
+            val loadedQuiz = intent.getSerializableExtra("Quiz") as FullQuiz
+            playGame(loadedQuiz)
         }
 
     }
@@ -50,10 +50,11 @@ class QuizPlayer : AppCompatActivity() {
     }
 
     fun playGame(quiz: FullQuiz) {
-        nextQuestion(quiz.getQuestions(), 0, 0)
+        nextQuestion(quiz, 0, 0)
     }
 
-    fun nextQuestion(questions: List<QuizQuestion>, counter:Int, score:Int) {
+    fun nextQuestion(quiz: FullQuiz, counter:Int, score:Int) {
+        val questions = quiz.getQuestions()
         val correctAnswer = questions[counter].getCorrect()
         val incorrectAnswer = questions[counter].getIncorrect()
         var answerList = listOf<String>(correctAnswer, incorrectAnswer[0], incorrectAnswer[1], incorrectAnswer[2])
@@ -74,36 +75,40 @@ class QuizPlayer : AppCompatActivity() {
         questions[counter].printQuestion()
 
         firstBtn.setOnClickListener{
-            checkAnswer(questions, firstBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, firstBtn.text as String,correctAnswer, score, counter)
         }
 
         secondBtn.setOnClickListener{
-            checkAnswer(questions, secondBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, secondBtn.text as String,correctAnswer, score, counter)
         }
 
         thirdBtn.setOnClickListener{
-            checkAnswer(questions, thirdBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, thirdBtn.text as String,correctAnswer, score, counter)
         }
 
         fourthBtn.setOnClickListener{
-            checkAnswer(questions, fourthBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, fourthBtn.text as String,correctAnswer, score, counter)
         }
     }
 
-    fun checkAnswer(questions: List<QuizQuestion>, curAnswer: String, correctAnswer: String, score: Int, counter: Int) {
+    fun checkAnswer(quiz: FullQuiz, curAnswer: String, correctAnswer: String, score: Int, counter: Int) {
+        val questions = quiz.getQuestions()
         var curScore = score
         var curCounter = counter
         Log.e("Answer", "$curAnswer $correctAnswer")
         if (curAnswer==correctAnswer) curScore += 1
         if (counter!=4) {
             curCounter+=1
-            nextQuestion(questions, curCounter, curScore)
+            nextQuestion(quiz, curCounter, curScore)
         }
         else {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Quiz complete!")
                 .setMessage("$curScore/5")
                 .setPositiveButton("Save"){ dialogInterface: DialogInterface, i: Int ->
+                    val curOpener = QuizOpener(applicationContext)
+                    curOpener.addData(quiz, applicationContext)
+
                     Toast.makeText(applicationContext,"Saved",Toast.LENGTH_LONG).show()
                     val toSavedIntent = Intent(this, SavedQuiz::class.java)
                     startActivity(toSavedIntent)

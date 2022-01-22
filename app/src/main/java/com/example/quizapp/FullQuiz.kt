@@ -1,6 +1,9 @@
 package com.example.quizapp
 
-class FullQuiz {
+import android.util.Log
+import java.io.Serializable
+
+class FullQuiz : Serializable  {
     private var _id = 0L
     private var themeName = ""
     private var difficulty = ""
@@ -20,9 +23,20 @@ class FullQuiz {
     }
 
     fun PrintQuiz (){
-        for (i in 0..4) {
-            questionList[i].printQuestion()
+        for (element in questionList) {
+            element.printQuestion()
         }
+    }
+
+    fun printQuizSimple(){
+        Log.e("id", _id.toString())
+        Log.e("Theme", themeName)
+        Log.e("difficulty", difficulty)
+        Log.e("Length", questionList.size.toString())
+    }
+
+    fun getId(): Long {
+        return _id
     }
 
     fun getTheme(): String{
@@ -36,4 +50,4 @@ class FullQuiz {
     fun getQuestions():List<QuizQuestion>{
         return questionList
     }
-}
+} 

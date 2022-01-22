@@ -18,12 +18,12 @@ object QuestionContract {
 
     object QuestionEntry : BaseColumns{
         const val TABLE_NAME = "Question"
-        const val COL_QUIZ_ID = "Quiz ID"
+        const val COL_QUIZ_ID = "QuizID"
         const val COL_TITLE = "Title"
         const val COL_CORRECT = "Correct"
-        const val COL_INCORRECT_ONE = "Incorrect One"
-        const val COL_INCORRECT_TWO = "Incorrect Two"
-        const val COL_INCORRECT_THREE = "Incorrect Three"
+        const val COL_INCORRECT_ONE = "IncorrectOne"
+        const val COL_INCORRECT_TWO = "IncorrectTwo"
+        const val COL_INCORRECT_THREE = "IncorrectThree"
     }
 
 

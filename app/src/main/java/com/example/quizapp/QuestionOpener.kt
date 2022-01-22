@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
+import android.util.Log
 
 class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     override fun onCreate(db: SQLiteDatabase) {
@@ -22,6 +23,7 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     fun addData(curQuestion: QuizQuestion, quizId: Long) {
+        Log.e("Made", quizId.toString())
         val values = ContentValues().apply {
             put(QuestionContract.QuestionEntry.COL_TITLE, curQuestion.getTitle())
             put(QuestionContract.QuestionEntry.COL_QUIZ_ID, quizId)
@@ -34,6 +36,7 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     fun loadQuizQuestions(quizId: Long): MutableList<QuizQuestion> {
+        Log.e("Loaded", quizId.toString())
         val questionList = mutableListOf<QuizQuestion>()
 
         val select = "${QuestionContract.QuestionEntry.COL_QUIZ_ID} = ?"
@@ -63,11 +66,23 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
                 curQuestion.makeQuestion(quizId, curId, curTitle, curCorrect, curIncorrect)
                 questionList.add(curQuestion)
+                Log.e("length", curIncorrect.size.toString())
             }
         }
         cursor.close()
 
         return questionList
+    }
+
+    fun deleteQuizQuestion (quizId: Long){
+        val select = "${QuestionContract.QuestionEntry.COL_QUIZ_ID} = ?"
+        val selectArg = arrayOf(quizId.toString())
+
+        this.writableDatabase.delete(
+            QuestionContract.QuestionEntry.TABLE_NAME,
+            select,
+            selectArg)
+
     }
 
 }

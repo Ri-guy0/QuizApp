@@ -1,8 +1,9 @@
 package com.example.quizapp
 
 import android.util.Log
+import java.io.Serializable
 
-class QuizQuestion {
+class QuizQuestion : Serializable  {
     private var _quizId = 0L
     private var _id = 0L
     private var question = ""

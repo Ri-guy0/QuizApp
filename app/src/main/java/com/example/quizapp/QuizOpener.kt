@@ -54,6 +54,19 @@ class QuizOpener(context: Context): SQLiteOpenHelper(context,
         return savedList
     }
 
+    fun deleteQuiz(quizId: Long, context: Context){
+        val select = "${BaseColumns._ID} = ?"
+        val selectArg = arrayOf(quizId.toString())
+
+        this.writableDatabase.delete(
+            QuizContract.QuizEntry.TABLE_NAME,
+            select,
+            selectArg)
+
+        val curOpener = QuestionOpener(context)
+        curOpener.deleteQuizQuestion(quizId)
+    }
+
     companion object {
         const val DATABASE_VERSION=1
         const val DATABASE_NAME="QuizReader.db"
