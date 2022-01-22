@@ -24,35 +24,55 @@ class SavedQuiz : AppCompatActivity() {
         val toModBtn = findViewById<Button>(R.id.ToQuizMod)
         val quizzesView = findViewById<ListView>(R.id.SavedQuizList)
 
+        // listener to go to the next page
         toModBtn.setOnClickListener{
             val toModIntent = Intent(this, QuizModifier::class.java)
             startActivity(toModIntent)
         }
 
+        // gets the data from the database
         val curOpener = QuizOpener(applicationContext)
         quizzes = curOpener.loadData(applicationContext)
 
+        // set the list adapter for the ListView
         quizAdapter= QuizAdapter(this, quizzes)
         quizzesView.adapter=quizAdapter
 
 
+        /*
+        * Gives option to delete the quiz from the database
+        * @param       adapterView
+        * @param       view1
+        * @param       i                  the position in the list of the item clicked
+        * @param       l
+        * @view        AlertDialog        gives option to accept deletion
+        **/
         quizzesView.setOnItemLongClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
             val curId = quizAdapter!!.getItemId(i)
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Delete quiz?")
                 .setMessage("Would you like to delete ${quizzes[i].getTheme()}:${curId}")
-                .setPositiveButton("Yes"){ dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton("Yes"){ dialogInterface: DialogInterface, j: Int ->
                     val curOpener = QuizOpener(applicationContext)
                     curOpener.deleteQuiz(curId, applicationContext)
                     quizzes.removeAt(i)
+                    quizAdapter!!.notifyDataSetChanged()
                 }
-                .setNegativeButton("No"){ dialogInterface: DialogInterface, i: Int ->
+                .setNegativeButton("No"){ dialogInterface: DialogInterface, j: Int ->
 
                 }
                 .create().show()
             true
         }
 
+        /*
+        * Gives option to play the quiz from the database
+        * @param       parent
+        * @param       view
+        * @param       position           the position in the list of the item clicked
+        * @param       id
+        * @view        AlertDialog        gives option to accept playing the quiz
+        **/
         quizzesView.setOnItemClickListener { parent, view, position, id ->
             quizzes[position].PrintQuiz()
             val curId = quizAdapter!!.getItemId(position)
@@ -93,8 +113,10 @@ class SavedQuiz : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val newView = LayoutInflater.from(context).inflate(R.layout.quiz_list, parent, false)
             val themeText = newView.findViewById<TextView>(R.id.QuizTheme)
+            val difficultyText = newView.findViewById<TextView>(R.id.QuizDifficulty)
 
             themeText.text = quizList[position].getTheme()
+            difficultyText.text = quizList[position].getDifficulty()
             return newView
         }
 

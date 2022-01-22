@@ -7,25 +7,47 @@
     tools:context=".QuizPlayer"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
     <TextView
         android:id="@+id/QuizTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="75dp"/>
 
     <Button
         android:id="@+id/AnswerOne"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
     <Button
         android:id="@+id/AnswerTwo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
     <Button
         android:id="@+id/AnswerThree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
 
     <Button
         android:id="@+id/AnswerFour"

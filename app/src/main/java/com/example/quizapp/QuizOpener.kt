@@ -19,6 +19,11 @@ class QuizOpener(context: Context): SQLiteOpenHelper(context,
         onCreate(db)
     }
 
+    /*
+    * Adds data to the database
+    * @param       curQuiz                the quiz to add to teh database
+    * @param       context                the application context for the question db
+    **/
     fun addData(curQuiz: FullQuiz, context: Context) {
         val values = ContentValues().apply {
             put(QuizContract.QuizEntry.COL_THEME, curQuiz.getTheme())
@@ -33,6 +38,11 @@ class QuizOpener(context: Context): SQLiteOpenHelper(context,
         }
     }
 
+    /*
+    * Loads data to the database
+    * @param       context                the application context for the question db
+    * @return      MutableList<FullQuiz>  the list of quizzes loaded in
+    **/
     fun loadData(context: Context): MutableList<FullQuiz> {
         val savedList = mutableListOf<FullQuiz>()
         val cursor = this.readableDatabase.rawQuery("select * from " +QuizContract.QuizEntry.TABLE_NAME,null)
@@ -54,6 +64,11 @@ class QuizOpener(context: Context): SQLiteOpenHelper(context,
         return savedList
     }
 
+    /*
+    * Deletes data to the database
+    * @param       quizId                 the id of the quiz to be deleted
+    * @param       context                the application context for the question db
+    **/
     fun deleteQuiz(quizId: Long, context: Context){
         val select = "${BaseColumns._ID} = ?"
         val selectArg = arrayOf(quizId.toString())

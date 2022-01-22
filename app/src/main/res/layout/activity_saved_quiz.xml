@@ -13,6 +13,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Tap to enter quiz and hold to delete"/>
+
     <Button
         android:id="@+id/ToQuizMod"
         android:layout_width="match_parent"

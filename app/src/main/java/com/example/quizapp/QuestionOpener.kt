@@ -22,8 +22,13 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         const val DATABASE_NAME="QuestionReader.db"
     }
 
+    /*
+    * Adds data to the database
+    * @param       curQuestion            the question to add to teh database
+    * @param       quizId                 the quiz id to assign to the database
+    **/
     fun addData(curQuestion: QuizQuestion, quizId: Long) {
-        Log.e("Made", quizId.toString())
+        //Log.e("Made", quizId.toString())
         val values = ContentValues().apply {
             put(QuestionContract.QuestionEntry.COL_TITLE, curQuestion.getTitle())
             put(QuestionContract.QuestionEntry.COL_QUIZ_ID, quizId)
@@ -35,8 +40,13 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         this.writableDatabase.insert(QuestionContract.QuestionEntry.TABLE_NAME, null, values)
     }
 
+    /*
+    * Loads questions for a specific quiz
+    * @param       quizId                        the quiz id to use to load the questions
+    * @return      MutableList<QuizQuestions>    the list of questions for the quiz
+    **/
     fun loadQuizQuestions(quizId: Long): MutableList<QuizQuestion> {
-        Log.e("Loaded", quizId.toString())
+        //Log.e("Loaded", quizId.toString())
         val questionList = mutableListOf<QuizQuestion>()
 
         val select = "${QuestionContract.QuestionEntry.COL_QUIZ_ID} = ?"
@@ -66,7 +76,7 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
                 curQuestion.makeQuestion(quizId, curId, curTitle, curCorrect, curIncorrect)
                 questionList.add(curQuestion)
-                Log.e("length", curIncorrect.size.toString())
+                //Log.e("length", curIncorrect.size.toString())
             }
         }
         cursor.close()
@@ -74,6 +84,10 @@ class QuestionOpener(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
         return questionList
     }
 
+    /*
+    * Deletes the questions for a specific quiz
+    * @param       quizId                 the quiz id to delete from the database
+    **/
     fun deleteQuizQuestion (quizId: Long){
         val select = "${QuestionContract.QuestionEntry.COL_QUIZ_ID} = ?"
         val selectArg = arrayOf(quizId.toString())

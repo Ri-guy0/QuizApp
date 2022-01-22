@@ -22,6 +22,10 @@ class FullQuiz : Serializable  {
         this.questionList=questionList
     }
 
+    /*
+    * prints the entire quiz
+    * @debug          displays the entire quiz
+    **/
     fun PrintQuiz (){
         for (element in questionList) {
             element.printQuestion()
