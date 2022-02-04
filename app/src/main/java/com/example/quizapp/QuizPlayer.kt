@@ -2,13 +2,20 @@ package com.example.quizapp
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Color.blue
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class QuizPlayer : AppCompatActivity() {
@@ -93,19 +100,19 @@ class QuizPlayer : AppCompatActivity() {
         questions[counter].printQuestion()
 
         firstBtn.setOnClickListener{
-            checkAnswer(quiz, firstBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, firstBtn,correctAnswer, score, counter)
         }
 
         secondBtn.setOnClickListener{
-            checkAnswer(quiz, secondBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, secondBtn,correctAnswer, score, counter)
         }
 
         thirdBtn.setOnClickListener{
-            checkAnswer(quiz, thirdBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, thirdBtn,correctAnswer, score, counter)
         }
 
         fourthBtn.setOnClickListener{
-            checkAnswer(quiz, fourthBtn.text as String,correctAnswer, score, counter)
+            checkAnswer(quiz, fourthBtn,correctAnswer, score, counter)
         }
     }
 
@@ -119,15 +126,34 @@ class QuizPlayer : AppCompatActivity() {
     * @call        nextQuestion
     * @view        AlertDialog            gives user choice to save or not when done quiz
     **/
-    fun checkAnswer(quiz: FullQuiz, curAnswer: String, correctAnswer: String, score: Int, counter: Int) {
+    fun checkAnswer(quiz: FullQuiz, curButton: Button, correctAnswer: String, score: Int, counter: Int) {
+        var curAnswer = curButton.text as String;
         val questions = quiz.getQuestions()
         var curScore = score
         var curCounter = counter
         Log.e("Answer", "$curAnswer $correctAnswer")
-        if (curAnswer==correctAnswer) curScore += 1
+
+
+
+        if (curAnswer==correctAnswer) {
+            curButton.setBackgroundColor(Color.GREEN)
+
+            curScore += 1
+        } else {
+            curButton.setBackgroundColor(Color.RED)
+
+        }
+
         if (counter!=4) {
-            curCounter+=1
-            nextQuestion(quiz, curCounter, curScore)
+            try {
+                Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                    curCounter+=1
+                    curButton.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_500))
+                    nextQuestion(quiz, curCounter, curScore)
+                }, 1000)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
         else {
             val builder = AlertDialog.Builder(this)
