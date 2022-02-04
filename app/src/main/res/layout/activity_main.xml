@@ -24,9 +24,27 @@
     <TextView
         android:id="@+id/TosText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="The terms and services are"
+        android:layout_height="300sp"
         android:layout_below="@id/TosTitle"
-        android:layout_above="@id/AcceptTos"/>
+        android:scrollbars="vertical"
+        android:text="@string/ToS"
+        android:background="@drawable/legal_border"/>
+
+    <TextView
+        android:id="@+id/PrivacyTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TosText"
+        android:text="Privacy Policy"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/PrivacyText"
+        android:layout_width="match_parent"
+        android:layout_height="300sp"
+        android:layout_below="@id/PrivacyTitle"
+        android:background="@drawable/legal_border"
+        android:scrollbars="vertical"
+        android:text="@string/PrivacyPolicy" />
 
 </RelativeLayout>

@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
+        <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/drawable/legal_border.xml" value="0.1" />
+        <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/activity_quiz_modifier.xml" value="0.27447916666666666" />
         <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/activity_quiz_player.xml" value="0.12604166666666666" />
         <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/activity_saved_quiz.xml" value="0.27447916666666666" />
         <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/layout/quiz_list.xml" value="0.1" />
+        <entry key="..\:/Riley/Coding/AndroidProject/QuizApp/app/src/main/res/menu/activity_quiz_bar.xml" value="0.13229166666666667" />
       </map>
     </option>
   </component>

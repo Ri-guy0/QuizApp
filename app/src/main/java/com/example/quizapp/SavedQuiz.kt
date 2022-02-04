@@ -3,15 +3,15 @@ package com.example.quizapp
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
+import android.view.*
 import android.view.View.inflate
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import java.io.Serializable
 
 class SavedQuiz : AppCompatActivity() {
@@ -23,6 +23,11 @@ class SavedQuiz : AppCompatActivity() {
 
         val toModBtn = findViewById<Button>(R.id.ToQuizMod)
         val quizzesView = findViewById<ListView>(R.id.SavedQuizList)
+
+        // Tool Bar
+        val myToolBar = findViewById<Toolbar>(R.id.QuizBar)
+        setSupportActionBar(myToolBar)
+        myToolBar.setBackgroundColor(Color.parseColor("#3F67DA"))
 
         // listener to go to the next page
         toModBtn.setOnClickListener{
@@ -94,6 +99,35 @@ class SavedQuiz : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.activity_quiz_bar, menu)
+        return true
+    }
+
+    /*
+     * Method is responsible for the toolbar selection
+     * Pressing help icon brings up a alert dialog
+     * @param       item        the item that was clicked on the toolbar
+     * @return      true
+     * @see         alert dialogue
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.helpItem -> {
+                val alertDialogBuilder = AlertDialog.Builder(this)
+
+                // sets alert dialog to display help
+                alertDialogBuilder.setTitle("Help:")
+                    .setMessage("Tap the quiz to enter it \nHold click to delete it")
+                    .setPositiveButton("Okay") { click: DialogInterface?, arg: Int ->
+                    }
+                alertDialogBuilder.create().show()
+            }
+        }
+        return true
+    }
+
     class QuizAdapter(
         val context: Context,
         private val quizList: MutableList<FullQuiz>
@@ -119,6 +153,5 @@ class SavedQuiz : AppCompatActivity() {
             difficultyText.text = quizList[position].getDifficulty()
             return newView
         }
-
     }
 }

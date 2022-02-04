@@ -7,6 +7,15 @@
     tools:context=".QuizModifier"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/QuizBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
     <TextView
         android:id="@+id/QuizModTitle"
         android:layout_width="match_parent"
@@ -14,6 +23,10 @@
         android:textSize="20sp"
         android:gravity="center"
         android:text="Make your quiz!"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
 
     <TextView
         android:id="@+id/ThemeText"
@@ -27,6 +40,10 @@
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
+
     <TextView
         android:id="@+id/DiificultyText"
         android:layout_width="match_parent"
@@ -38,6 +55,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:spinnerMode="dropdown"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="25dp"/>
 
     <Button
         android:id="@+id/ToQuiz"

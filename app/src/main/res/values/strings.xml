@@ -12,6 +12,17 @@
         <item>Film</item>
         <item>TV</item>
         <item>Politics</item>
+        <item>Math</item>
+        <item>Books</item>
+        <item>Vehicle</item>
+        <item>Music</item>
+        <item>Video Games</item>
+        <item>Nature</item>
+        <item>Anime</item>
+        <item>Board Games</item>
+        <item>Cartoon</item>
+        <item>Gadget</item>
+        <item>Comic</item>
     </string-array>
 
     <string-array name="quiz_difficulty">
@@ -19,4 +30,32 @@
         <item>medium</item>
         <item>hard</item>
     </string-array>
+    <string name="ToS">
+        This terms of service is the binding agreement to using the services of this application. Please
+        read the terms of service and the privacy policy before accepting. Using this application, no illegal
+        or malicious activity is allowed. Additionally, this uses Open Trivia Database by PixelTail Games LLC
+        who\'s terms of services also in effect. \n \n
+        The copyright of the questions is by Open Trivia Database by PixelTail Games LLC. \n \n
+        By using this product you agree to be communicating with us and PixelTail Games LLC. Anytime you
+        send an email or any form of communication, you hereby consent to receive communication from us.
+        Additionally, by accepting this agreement, you agree that the laws of your country will govern these
+        terms and services or any dispute between us and you. \n \n
+        You are granted access to a licence to use this application for personal use. \n \n
+        You are solely responsible for your account and all activities on your account. \n \n
+        For additional questions or comments, please contact us at rd167956@hotmail.com
+    </string>
+    <string name="PrivacyPolicy">
+        For our commitment to protect your privacy, this is a statement to provide you with the information
+        regarding what and how your data will be used. \n \n
+        This application does not request any personal, finical or legal data. However, all data provide
+        additionally in any text form will be saved. Additionally, any information gathered by your performance
+        on the quizzes as well as your preferred themes and difficulties will be saved to provide you with
+        the best experience specialized to you, the user. \n \n
+        We also require access to the internet that could be logged and collected, including your protocol address,
+        browser type, settings, services and cookie data. These logs are only used to increase your experience and
+        will not be used by us for any reason. \n \n
+        Other recipients of your data could include Open Trivia Database by PixelTail Games LLC when requesting
+        data from their API \n \n
+        For additional questions or comments, please contact us at rd167956@hotmail.com
+    </string>
 </resources>
