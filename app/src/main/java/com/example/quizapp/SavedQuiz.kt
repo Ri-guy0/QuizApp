@@ -12,6 +12,7 @@ import android.view.View.inflate
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
+import com.example.quizapp.test.TestDatabase
 import java.io.Serializable
 
 class SavedQuiz : AppCompatActivity() {
@@ -79,7 +80,7 @@ class SavedQuiz : AppCompatActivity() {
         * @view        AlertDialog        gives option to accept playing the quiz
         **/
         quizzesView.setOnItemClickListener { parent, view, position, id ->
-            quizzes[position].PrintQuiz()
+            //quizzes[position].PrintQuiz()
             val curId = quizAdapter!!.getItemId(position)
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Enter quiz?")

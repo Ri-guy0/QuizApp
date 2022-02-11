@@ -1,6 +1,7 @@
 package com.example.quizapp
 
 import android.util.Log
+import junit.framework.Assert.assertEquals
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,8 +26,7 @@ class ApiHandler(addition: String,
     * @return      StoredData
     **/
     fun runAPI(curData: StoreData) {
-
-        Log.e("running", "running")
+        //Log.e("running", "running")
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://opentdb.com/")

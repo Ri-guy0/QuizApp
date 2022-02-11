@@ -49,50 +49,14 @@ class QuizModifier : AppCompatActivity() {
         // Intent to go to the next page with the data from the user
         toQuizBtn.setOnClickListener{
             val toQuizIntent = Intent(this, QuizPlayer::class.java).apply {
-                putExtra("Theme Value", ConvertTheme(themeSpinner.selectedItem.toString()).toString())
+                var converter = ThemeConverter()
+                putExtra("Theme Value", converter.convert(themeSpinner.selectedItem.toString()).toString())
                 putExtra("Difficulty", difficultySpinner.selectedItem.toString())
                 putExtra("Theme Name", themeSpinner.selectedItem.toString())
                 putExtra("GetAPI", "true")
             }
             startActivity(toQuizIntent)
         }
-    }
-
-    /*
-    * converts the name of the theme to the index that the api uses
-    * @param       themeText                the theme as text
-    * @return      Int                      the theme as an index
-    **/
-    fun ConvertTheme (themeText: String): Int {
-        var themeNum = 0
-
-        when (themeText) {
-            "General Knowledge" -> themeNum=9
-            "Science and Computers" -> themeNum=18
-            "Animals" -> themeNum=27
-            "Geography" -> themeNum=22
-            "Art" -> themeNum=25
-            "Mythology" -> themeNum=20
-            "History" -> themeNum=23
-            "Sports" -> themeNum=21
-            "Film" -> themeNum=11
-            "TV" -> themeNum=14
-            "Politics" -> themeNum=24
-            "Math" -> themeNum=19
-            "Books" -> themeNum=10
-            "Vehicle" -> themeNum=28
-            "Music" -> themeNum=12
-            "Video Games" -> themeNum=15
-            "Nature" -> themeNum=17
-            "Anime" -> themeNum=31
-            "Board Games" -> themeNum=16
-            "Cartoon" -> themeNum=32
-            "Gadget" -> themeNum=30
-            "Comic" -> themeNum=29
-        }
-
-        Log.e("num", themeNum.toString())
-        return themeNum
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

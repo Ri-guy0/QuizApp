@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.widget.Button
 import android.widget.TextView
+import com.example.quizapp.test.TestApi
+import com.example.quizapp.test.TestDatabase
+import com.example.quizapp.test.TestHub
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,5 +29,7 @@ class MainActivity : AppCompatActivity() {
         toSavedBtn.setOnClickListener{
             startActivity(toSavedIntent)
         }
+
+        var tests = TestHub(applicationContext)
     }
 }
