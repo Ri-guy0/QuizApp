@@ -1,14 +1,16 @@
-package com.example.quizapp
+package com.example.quizapp.database
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
+import com.example.quizapp.localclasses.FullQuiz
 
 class QuizOpener(context: Context): SQLiteOpenHelper(context,
         DATABASE_NAME, null,
-        DATABASE_VERSION) {
+        DATABASE_VERSION
+) {
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(QuizContract.SQL_CREATE_ENTRIES)
@@ -45,7 +47,7 @@ class QuizOpener(context: Context): SQLiteOpenHelper(context,
     **/
     fun loadData(context: Context): MutableList<FullQuiz> {
         val savedList = mutableListOf<FullQuiz>()
-        val cursor = this.readableDatabase.rawQuery("select * from " +QuizContract.QuizEntry.TABLE_NAME,null)
+        val cursor = this.readableDatabase.rawQuery("select * from " + QuizContract.QuizEntry.TABLE_NAME,null)
 
         with(cursor) {
             while (moveToNext()) {

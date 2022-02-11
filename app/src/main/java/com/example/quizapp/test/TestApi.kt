@@ -1,11 +1,12 @@
 package com.example.quizapp.test
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.Log
 import com.example.quizapp.*
+import com.example.quizapp.api.ApiHandler
+import com.example.quizapp.api.StoreData
+import com.example.quizapp.localclasses.FullQuiz
+import com.example.quizapp.localclasses.ThemeConverter
 import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
 import org.junit.Test
 
 class TestApi(context: Context) {

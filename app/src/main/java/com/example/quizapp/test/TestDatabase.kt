@@ -2,8 +2,8 @@ package com.example.quizapp.test
 
 import android.content.Context
 import android.util.Log
-import com.example.quizapp.FullQuiz
-import com.example.quizapp.QuizOpener
+import com.example.quizapp.localclasses.FullQuiz
+import com.example.quizapp.database.QuizOpener
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 

@@ -1,7 +1,8 @@
-package com.example.quizapp
+package com.example.quizapp.api
 
 import android.util.Log
-import junit.framework.Assert.assertEquals
+import com.example.quizapp.localclasses.FullQuiz
+import com.example.quizapp.localclasses.QuizQuestion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
