@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.localclasses
 
 import android.util.Log
 import java.io.Serializable

@@ -1,6 +1,8 @@
-package com.example.quizapp
+package com.example.quizapp.api
 
 import android.util.Log
+import com.example.quizapp.localclasses.FullQuiz
+import com.example.quizapp.localclasses.QuizQuestion
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,8 +27,7 @@ class ApiHandler(addition: String,
     * @return      StoredData
     **/
     fun runAPI(curData: StoreData) {
-
-        Log.e("running", "running")
+        //Log.e("running", "running")
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://opentdb.com/")

@@ -3,7 +3,6 @@ package com.example.quizapp
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Color.blue
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -14,8 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import java.util.*
-import kotlin.concurrent.schedule
+import com.example.quizapp.api.ApiHandler
+import com.example.quizapp.api.StoreData
+import com.example.quizapp.database.QuizOpener
+import com.example.quizapp.localclasses.FullQuiz
 
 
 class QuizPlayer : AppCompatActivity() {

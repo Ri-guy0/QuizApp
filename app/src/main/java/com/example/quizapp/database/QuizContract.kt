@@ -1,4 +1,4 @@
-package com.example.quizapp
+package com.example.quizapp.database
 
 import android.provider.BaseColumns
 
